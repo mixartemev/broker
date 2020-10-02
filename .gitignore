@@ -1,0 +1,6 @@
+.idea/
+*.lock
+env.py
+venv/
+__pycache__/
+models/__pycache__/
