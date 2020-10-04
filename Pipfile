@@ -9,6 +9,8 @@ verify_ssl = true
 sqlalchemy = "*"
 requests = "*"
 mysql-connector-python = "*"
+requests-oauthlib = "*"
+pandas = "*"
 
 [requires]
 python_version = "3.8"
