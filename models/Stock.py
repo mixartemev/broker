@@ -1,12 +1,15 @@
 from sqlalchemy import func
+
 from models import *
+
+stock_types = Enum('t', 'r', 'CS', 'ETF', 'EUSOV', 'FOR', 'PS', name='type')
 
 
 class Stock(Base):
     __tablename__ = 'stocks'
     ticker = Column(String(15), primary_key=True)
-    name = Column(String(127))
-    type = Column(Enum('t', 'r', name='type'))
+    name = Column(String(255))
+    type = Column(stock_types)
     exchange = Column(Enum('MOEX', 'SPBX', name='type'))
     rating = Column(Integer)
     volatility = Column(Float)
