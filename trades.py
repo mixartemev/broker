@@ -1,14 +1,10 @@
-import requests
-from refresh_token import ref_tok
+from req import get
 
 
 def get_trades():
-    res: list = requests.get(
-        'https://api.alor.ru/md/stats/SPBX/D70657/history/trades',
-        headers={'Authorization': f"Bearer {ref_tok()}"}
-    ).json()
+    res: list = get('/stats/SPBX/D70657/history/trades', {'from': 600}, 'https://api.alor.ru/md')
     deals = []
     for d in res:
-        sell = -1 if d['side'] == 'sell' else 1
-        deals.append({'id': d['id'], 'symbol': d['symbol'], 'qty': int(d['qty'])*sell,  'price': d['price']})
+        qty = int(d['qty']) * (1 if d['side'] == 'sell' else -1)
+        deals.append({'id': d['id'], 'symbol': d['symbol'], 'price': d['price'], 'qty': qty, 'date': d['date']})
     return deals
