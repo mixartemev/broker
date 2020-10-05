@@ -1,3 +1,4 @@
+from datetime import datetime
 from models import *
 from models.Stock import Stock
 from models.User import User
@@ -19,5 +20,5 @@ class Trade(Base):
         self.symbol = symbol
         self.price = price
         self.qty = qty
-        self.date = date
+        self.date = date.split('T')[0]
         self.user_id = user_id

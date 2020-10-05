@@ -7,6 +7,8 @@ class User(Base):
     id = Column(SmallInteger, primary_key=True, autoincrement=True)
     name = Column(String(255))
     trades = relationship("Trade", back_populates="user")
+    transactions = relationship("Transaction", back_populates="user")
+    stocks = relationship("Stock", back_populates="follower")
 
     def __init__(self, name):
         self.name = name

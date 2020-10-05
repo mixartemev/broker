@@ -1,6 +1,7 @@
 from sqlalchemy import func
 
 from models import *
+from models.User import User
 
 stock_types = Enum('t', 'r', 'CS', 'ETF', 'EUSOV', 'FOR', 'PS', name='type')
 
@@ -14,7 +15,10 @@ class Stock(Base):
     rating = Column(Integer)
     volatility = Column(Float)
     last_price = Column(Float)
+    followed_by = Column(SmallInteger, ForeignKey('users.id'), default=None)
     updated_at = Column(DateTime, default=func.now(), onupdate=func.now())
+
+    follower: User = relationship("User", back_populates="stocks")
     trades = relationship("Trade", back_populates="stock")
 
     def __init__(self, ticker, name, type, exchange, rating, volatility, last_price=0):
