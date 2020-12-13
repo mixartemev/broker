@@ -1,6 +1,4 @@
-from datetime import datetime
 from models import *
-from models.Stock import Stock
 from models.User import User
 
 
@@ -15,10 +13,11 @@ class Transaction(Base):
     user_id = Column(SmallInteger, ForeignKey('users.id'))
     user: User = relationship("User", back_populates="transactions")
 
-    def __init__(self, id, symbol, price, qty, date, user_id=1):
+    def __init__(self, id, source, dest, val, cur, date, user_id=1):
         self.id = id
-        self.symbol = symbol
-        self.price = price
-        self.qty = qty
-        self.date = date.split('T')[0]
+        self.source = source
+        self.dest = dest
+        self.val = val
+        self.cur = cur
+        self.date = date
         self.user_id = user_id

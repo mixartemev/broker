@@ -6,7 +6,7 @@ from models.User import User
 
 class Trade(Base):
     __tablename__ = 'trades'
-    id = Column(Integer, primary_key=True)
+    id = Column(BigInteger, primary_key=True)
     symbol = Column(String(15), ForeignKey('stocks.ticker'))
     price = Column(Float)
     qty = Column(SmallInteger)

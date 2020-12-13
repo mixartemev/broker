@@ -10,7 +10,7 @@ def get(url: str, params: dict = None, host: str = 'https://api.alor.ru/md/v2/')
 
 
 def get_trades(offset: int = 0):
-    res: list = get('/stats/SPBX/D70657/history/trades', {'from': offset}, 'https://api.alor.ru/md')
+    res: list = get('/stats/MOEX/D70657/history/trades', {'from': offset}, 'https://api.alor.ru/md')
     deals = []
     for d in res:
         qty = int(d['qty']) * (1 if d['side'] == 'sell' else -1)

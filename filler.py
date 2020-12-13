@@ -5,7 +5,7 @@ from models.Trade import Trade
 
 def stocks_update(arr: list):
     arr = filter(lambda x: x['type'] in stock_types.enums, arr)
-    g = [(r['symbol'], r['description'], r['type'], r['exchange'], r['rating'], r['volatility'], r.get('last_price')) for r in arr]
+    g = [(r['symbol'], r['description'], r['type'], r['exchange'], r['lotsize'], r['rating'], r['volatility'], r.get('last_price')) for r in arr]
     for i in g:
         session.merge(Stock(*i))
     session.commit()
